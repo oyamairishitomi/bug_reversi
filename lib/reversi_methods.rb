@@ -8,6 +8,7 @@ module ReversiMethods
   BLANK_CELL = '-'
 
   def build_initial_board
+    # boardは盤面を示す二次元配列
     board = Array.new(8) { Array.new(8, BLANK_CELL) }
     board[3][3] = WHITE_STONE # d4
     board[4][4] = WHITE_STONE # e5
@@ -44,6 +45,7 @@ module ReversiMethods
     raise '無効なポジションです' if pos.invalid?
     raise 'すでに石が置かれています' unless pos.stone_color(board) == BLANK_CELL
 
+    # コピーした盤面にて石の配置を試みて、成功すれば反映する
     copied_board = Marshal.load(Marshal.dump(board))
     copied_board[pos.row][pos.col] = stone_color
     turn_succeed = false

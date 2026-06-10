@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Position
+  # マスを'f3','d6'などの表記で表現する。変数名cell_refとして取り扱う。
   COL = %w[a b c d e f g h].freeze
   ROW = %w[1 2 3 4 5 6 7 8].freeze
 
@@ -19,9 +20,11 @@ class Position
 
   def initialize(row_or_cell_ref, col = nil)
     if col
+      # Position.new(1, 5) のような呼び出し
       @row = row_or_cell_ref
       @col = col
     else
+      # Position.new('f7')のような呼び出し
       @row = ROW.index(row_or_cell_ref[1])
       @col = COL.index(row_or_cell_ref[0])
     end
